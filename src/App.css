@@ -26,6 +26,23 @@ h3 {
   color: red;
 }
 
+.transaction-form-container {
+  box-sizing: border-box !important;
+  position: sticky !important;
+  width: 100% !important;
+  bottom: 0 !important;
+  padding: 1rem !important;
+  background-color: #98c1d9 !important;
+}
+
+.transaction-form {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background-color: transparent !important;
+}
+
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 2rem;

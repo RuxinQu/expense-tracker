@@ -1,6 +1,7 @@
 import { Budgets } from "./components/Budgets";
+import { Transaction } from "./components/Transaction";
 import { CssVarsProvider } from "@mui/joy/styles";
-import { CATEGORIES } from "./util/data";
+
 import "./App.css";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <CssVarsProvider>
         <h1>Expense Tracker</h1>
         <Budgets />
+        <Transaction />
       </CssVarsProvider>
     </div>
   );
