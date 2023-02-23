@@ -11,6 +11,7 @@ export const Transaction = () => {
   const [amount, setAmount] = useState(0);
 
   const dispatch = useDispatch();
+  // add new transaction to the state
   const handleAddTransaction = () => {
     if (amount !== 0) {
       dispatch(

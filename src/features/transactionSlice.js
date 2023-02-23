@@ -3,7 +3,7 @@ import { CATEGORIES } from "../util/data";
 
 export const transactionSlice = createSlice({
   name: "transactions",
-  //turn the array of array into an object
+  // initial state is an object. The key is the category, value is an empty array
   initialState: Object.fromEntries(CATEGORIES.map((c) => [c, []])),
   reducers: {
     addTransaction: (state, action) => {
@@ -20,7 +20,7 @@ export const transactionSlice = createSlice({
   },
 });
 
-export const selectTransaction = (state) => state.transactions;
+export const selectTransactions = (state) => state.transactions;
 
 export const { addTransaction, removeTransaction } = transactionSlice.actions;
 export default transactionSlice.reducer;

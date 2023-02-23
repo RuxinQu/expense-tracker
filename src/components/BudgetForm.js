@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBudgets } from "../features/budgetsSlice";
-import { selectTransaction } from "../features/transactionSlice";
+import { selectTransactions } from "../features/transactionSlice";
 import { Box, Input, FormControl, Button, Divider } from "@mui/joy";
 
 export const BudgetFrom = ({ budget }) => {
   // for the input field
   const [amount, setAmount] = useState(0);
-  const transactions = useSelector(selectTransaction);
-
-  // change the state from the redux toolkit
+  // get all the transactions from store
+  const transactions = useSelector(selectTransactions);
+  // enable to change the state from the redux toolkit
   const dispatch = useDispatch();
-
+  // get the funds remain for the current category
   const getRemainFunds = () => {
     const cost = transactions[budget.category]
       .map((t) => t.amount)

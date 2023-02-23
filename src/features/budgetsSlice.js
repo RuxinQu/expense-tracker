@@ -3,6 +3,7 @@ import { CATEGORIES } from "../util/data";
 
 export const budgetsSlice = createSlice({
   name: "budgets",
+  // initial state is an array of objects
   initialState: CATEGORIES.map((category) => ({
     category: category,
     amount: 0,
