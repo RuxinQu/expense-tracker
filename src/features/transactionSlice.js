@@ -1,8 +1,9 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { CATEGORIES } from "../util/data";
 
 export const transactionSlice = createSlice({
   name: "transactions",
+  //turn the array of array into an object
   initialState: Object.fromEntries(CATEGORIES.map((c) => [c, []])),
   reducers: {
     addTransaction: (state, action) => {

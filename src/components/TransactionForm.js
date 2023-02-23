@@ -12,17 +12,17 @@ export const Transaction = () => {
 
   const dispatch = useDispatch();
   const handleAddTransaction = () => {
-    if (amount != 0) {
+    if (amount !== 0) {
       dispatch(
         addTransaction({
           category,
           description,
-          amount,
+          amount: parseInt(amount),
           id: uuidv4(),
         })
       );
-      setAmount(0);
     }
+    setAmount(0);
   };
 
   return (
