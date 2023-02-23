@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../features/transactionSlice";
 import { CATEGORIES } from "../util/data";
+import { v4 as uuidv4 } from "uuid";
 import { Box, Input, Select, Option, Button } from "@mui/joy";
 
 export const Transaction = () => {
@@ -17,6 +18,7 @@ export const Transaction = () => {
           category,
           description,
           amount,
+          id: uuidv4(),
         })
       );
       setAmount(0);
@@ -25,7 +27,7 @@ export const Transaction = () => {
 
   return (
     <Box className="transaction-form-container">
-      <h2 style={{ textAlign: "center" }}>New Transaction</h2>
+      <h2 style={{ textAlign: "center", color: "#212529" }}>New Transaction</h2>
       <Box className="transaction-form">
         <Select
           value={category}
