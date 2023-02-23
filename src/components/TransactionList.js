@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { selectTransaction } from "../features/transactionSlice";
+import { selectTransactions } from "../features/transactionSlice";
 import { TransactionListItem } from "./TransactionListItem";
 import { Box, List } from "@mui/joy";
 
 export const TransactionList = () => {
-  const transactionsObj = useSelector(selectTransaction);
+  // transactionsObj is an object, the key is each category,  the value is an array of transactions objects under the category
+  const transactionsObj = useSelector(selectTransactions);
+  // transactionArr gets all the arrays from the value in transactionObj, and put them in one single array
   const transactionsArr = Object.values(transactionsObj).flat(1);
 
   return (

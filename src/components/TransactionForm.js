@@ -11,18 +11,19 @@ export const Transaction = () => {
   const [amount, setAmount] = useState(0);
 
   const dispatch = useDispatch();
+  // add new transaction to the state
   const handleAddTransaction = () => {
-    if (amount != 0) {
+    if (amount !== 0) {
       dispatch(
         addTransaction({
           category,
           description,
-          amount,
+          amount: parseInt(amount),
           id: uuidv4(),
         })
       );
-      setAmount(0);
     }
+    setAmount(0);
   };
 
   return (

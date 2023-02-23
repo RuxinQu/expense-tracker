@@ -1,14 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateBudgets } from "../features/budgetsSlice";
+import { selectTransactions } from "../features/transactionSlice";
 import { Box, Input, FormControl, Button, Divider } from "@mui/joy";
 
 export const BudgetFrom = ({ budget }) => {
   // for the input field
   const [amount, setAmount] = useState(0);
-
-  // change the state from the redux toolkit
+  // get all the transactions from store
+  const transactions = useSelector(selectTransactions);
+  // enable to change the state from the redux toolkit
   const dispatch = useDispatch();
+  // get the funds remain for the current category
+  const getRemainFunds = () => {
+    const cost = transactions[budget.category]
+      .map((t) => t.amount)
+      .reduce((amount1, amount2) => amount1 + amount2, 0);
+    const remainFunds = budget.amount - cost;
+    return remainFunds;
+  };
+
   const handleUpdateBudget = () => {
     dispatch(
       updateBudgets({
@@ -21,9 +32,9 @@ export const BudgetFrom = ({ budget }) => {
 
   // change the text color based on the remaining funds
   const getBudgetClass = () => {
-    if (budget.amount > 0) {
+    if (getRemainFunds() > 0) {
       return "positive";
-    } else if (budget.amount < 0) {
+    } else if (getRemainFunds() < 0) {
       return "negative";
     } else {
       return;
@@ -43,31 +54,43 @@ export const BudgetFrom = ({ budget }) => {
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           justifyContent: { xs: "start", sm: "space-between" },
-          alignItems: "center",
+          alignItems: { xs: "center", sm: "flex-end" },
         }}
       >
         <Box>
           <p style={{ margin: " 0" }}>Category</p>
           <h2>{budget.category}</h2>
-          <h3 className={getBudgetClass()}>Funds Remaining: {budget.amount}</h3>
+          <h3>Total Funds: {budget.amount}</h3>
         </Box>
-        <Input
-          type="number"
-          slotProps={{
-            input: {
-              step: 1,
-            },
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          startDecorator={{ dollar: "$" }["dollar"]}
-          endDecorator={
-            <Button variant="soft" onClick={handleUpdateBudget}>
-              Update
-            </Button>
-          }
-          sx={{ width: 200 }}
-        />
+        >
+          <Input
+            type="number"
+            slotProps={{
+              input: {
+                step: 1,
+              },
+            }}
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            startDecorator={{ dollar: "$" }["dollar"]}
+            endDecorator={
+              <Button variant="soft" onClick={handleUpdateBudget}>
+                Update
+              </Button>
+            }
+            sx={{ width: 200 }}
+          />
+          <h3 className={getBudgetClass()} style={{ marginTop: "1rem" }}>
+            Funds Remaining: {getRemainFunds()}
+          </h3>
+        </Box>
       </FormControl>
       <Divider sx={{ margin: { xs: "1rem", sm: "1.5rem 0" } }} />
     </Box>
