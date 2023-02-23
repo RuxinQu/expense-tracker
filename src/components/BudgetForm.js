@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBudgets } from "../features/budgetsSlice";
-import { Sheet, Input, FormControl, Button, Divider } from "@mui/joy";
+import { Box, Input, FormControl, Button, Divider } from "@mui/joy";
 
 export const BudgetFrom = ({ budget }) => {
   // for the input field
@@ -31,7 +31,7 @@ export const BudgetFrom = ({ budget }) => {
   };
 
   return (
-    <Sheet
+    <Box
       sx={{
         width: { xs: "100%", sm: "70%" },
         margin: "0 auto",
@@ -46,11 +46,11 @@ export const BudgetFrom = ({ budget }) => {
           alignItems: "center",
         }}
       >
-        <Sheet>
+        <Box>
           <p style={{ margin: " 0" }}>Category</p>
           <h2>{budget.category}</h2>
           <h3 className={getBudgetClass()}>Funds Remaining: {budget.amount}</h3>
-        </Sheet>
+        </Box>
         <Input
           type="number"
           slotProps={{
@@ -62,11 +62,7 @@ export const BudgetFrom = ({ budget }) => {
           onChange={(e) => setAmount(e.target.value)}
           startDecorator={{ dollar: "$" }["dollar"]}
           endDecorator={
-            <Button
-              variant="solid"
-              color="primary"
-              onClick={handleUpdateBudget}
-            >
+            <Button variant="soft" onClick={handleUpdateBudget}>
               Update
             </Button>
           }
@@ -74,6 +70,6 @@ export const BudgetFrom = ({ budget }) => {
         />
       </FormControl>
       <Divider sx={{ margin: { xs: "1rem", sm: "1.5rem 0" } }} />
-    </Sheet>
+    </Box>
   );
 };

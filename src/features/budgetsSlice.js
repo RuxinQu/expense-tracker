@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CATEGORIES } from "../util/data";
-// categories slice object
+
 export const budgetsSlice = createSlice({
   name: "budgets",
   initialState: CATEGORIES.map((category) => ({
@@ -8,7 +8,6 @@ export const budgetsSlice = createSlice({
     amount: 0,
   })),
   reducers: {
-    // createSlice use immuter so the Array.push method won't change the current state
     updateBudgets: (state, action) => {
       state.map((item) => {
         if (item.category === action.payload.category) {
@@ -19,7 +18,7 @@ export const budgetsSlice = createSlice({
   },
 });
 
-// define a selector
+// export the selector
 export const selectBudgets = (state) => state.budgets;
 
 // export action and reducer
