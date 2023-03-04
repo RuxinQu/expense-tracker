@@ -1,6 +1,6 @@
 {
   "name": "expense-tracker",
-  "homepage": "https://ruxinqu.github.io/expense-tracker/",
+  "homepage": "https://ruxinqu.github.io/redux-expense-tracker/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
