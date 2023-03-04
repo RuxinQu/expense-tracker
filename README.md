@@ -7,7 +7,7 @@
 
 A project helps to track the spending and remaining funds. The website is responsive. It's a practice of managing [React](https://reactjs.org) state with [Redux](https://redux.js.org) and [Redux Toolkit](https://redux-toolkit.js.org).
 
-View the deploy website: https://ruxinqu.github.io/expense-tracker/
+View the deploy website: https://ruxinqu.github.io/redux-expense-tracker/
 
 ## Usage
 
